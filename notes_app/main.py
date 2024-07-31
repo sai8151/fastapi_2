@@ -26,7 +26,7 @@ def create_note(note: schemas.NoteCreate, db: Session = Depends(get_db)):
     return db_note
 
 @app.get("/notes/", response_model=List[schemas.NoteInDBBase])
-def read_notes(skip: int = 0, limit: int = 10, db: Session = Depends(get_db)):
+def read_notes(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
     notes = db.query(models.Note).offset(skip).limit(limit).all()
     return notes
 
